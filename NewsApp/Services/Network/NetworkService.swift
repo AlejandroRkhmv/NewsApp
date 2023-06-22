@@ -19,8 +19,6 @@ class NetworkService: NetworkServiceProtocol {
         guard let url = URL(string: urlString) else { return }
         sessionService.requestSession(with: url, completion: completion)
     }
-    
-   
 }
 
 

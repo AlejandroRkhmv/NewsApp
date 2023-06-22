@@ -14,6 +14,7 @@ protocol NewsInteractorProtocol {
     
     init(networkService: NetworkServiceProtocol?, jsonParser: JSONParserProtocol?, newsCreator: NewsCreatorProtocol?)
     func needNewsForTable(completionHandler: @escaping (([New]) -> Void))
+    func loadImageData(from urlString: String, completionHandler: @escaping ((Data) -> Void))
 }
 
 class NewsInteractor: NewsInteractorProtocol {
@@ -37,5 +38,9 @@ class NewsInteractor: NewsInteractorProtocol {
                 completionHandler(news)
             })
         })
+    }
+    
+    func loadImageData(from urlString: String, completionHandler: @escaping ((Data) -> Void)) {
+        networkService?.newsRequest(with: urlString, completion: completionHandler)
     }
 }

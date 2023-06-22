@@ -13,6 +13,7 @@ protocol NewsPresenterProtocol: AnyObject {
     var news: [New] { get set }
     init(newsViewController: NewsViewControllerProtocol?, newsInteractor: NewsInteractorProtocol?)
     func getNewsForTable()
+    func loadImageData(from urlString: String, completionHandler: @escaping ((Data) -> Void))
 }
 
 class NewsPresenter: NewsPresenterProtocol {
@@ -30,9 +31,13 @@ class NewsPresenter: NewsPresenterProtocol {
             guard let self = self else { return }
             self.news = news
             print(self.news.count)
+            DispatchQueue.main.async {
+                self.newsViewController?.reloadData()
+            }
         })
-        DispatchQueue.main.async {
-            self.newsViewController?.reloadData()
-        }
+    }
+    
+    func loadImageData(from urlString: String, completionHandler: @escaping ((Data) -> Void)) {
+        newsInteractor?.loadImageData(from: urlString, completionHandler: completionHandler)
     }
 }

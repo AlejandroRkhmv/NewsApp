@@ -29,6 +29,7 @@
 		21A970C82A448FCD0053DCF4 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A970C72A448FCD0053DCF4 /* NewsInteractor.swift */; };
 		21A970CA2A4493A50053DCF4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A970C92A4493A50053DCF4 /* Constants.swift */; };
 		21A970CD2A4498D60053DCF4 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A970CC2A4498D60053DCF4 /* Builder.swift */; };
+		21A970CF2A44B5400053DCF4 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A970CE2A44B5400053DCF4 /* NewsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		21A970C72A448FCD0053DCF4 /* NewsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		21A970C92A4493A50053DCF4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		21A970CC2A4498D60053DCF4 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		21A970CE2A44B5400053DCF4 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				21A970AE2A447D7D0053DCF4 /* NewsViewController.swift */,
+				21A970CE2A44B5400053DCF4 /* NewsTableViewCell.swift */,
 				21A970C72A448FCD0053DCF4 /* NewsInteractor.swift */,
 				21A970C52A448FC30053DCF4 /* NewsPresenter.swift */,
 				21A970C42A448FA50053DCF4 /* NewsModels */,
@@ -352,6 +355,7 @@
 				21A970BF2A4488B80053DCF4 /* JSONParser.swift in Sources */,
 				21A970C12A4489180053DCF4 /* New.swift in Sources */,
 				21A970CD2A4498D60053DCF4 /* Builder.swift in Sources */,
+				21A970CF2A44B5400053DCF4 /* NewsTableViewCell.swift in Sources */,
 				21A970CA2A4493A50053DCF4 /* Constants.swift in Sources */,
 				21A970822A444D5B0053DCF4 /* NewsApp.xcdatamodeld in Sources */,
 				21A970C82A448FCD0053DCF4 /* NewsInteractor.swift in Sources */,
