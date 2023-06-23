@@ -21,7 +21,7 @@ class NewsTableViewCell: UITableViewCell {
         return activityIndicator
     }()
     
-    lazy var descriptionLabel: UILabel = {
+    var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -30,7 +30,7 @@ class NewsTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var creatorLabel: UILabel = {
+    var creatorLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -39,7 +39,7 @@ class NewsTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var dateLabel: UILabel = {
+    var dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.font = UIFont(name: "Courier new", size: 10)
@@ -47,7 +47,7 @@ class NewsTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var imageNew: UIImageView = {
+    var imageNew: UIImageView = {
         let imageNew = UIImageView()
         imageNew.contentMode = .scaleAspectFit
         imageNew.layer.cornerRadius = 10
@@ -85,7 +85,7 @@ class NewsTableViewCell: UITableViewCell {
     
     func fillCell(from new: New) {
         self.creatorLabel.text = new.creator.reduce("") { $0 + " " + $1 }
-        self.descriptionLabel.text = new.description
+        self.descriptionLabel.text = new.title
         self.dateLabel.text = new.date
         self.urlForImage = new.imageURL
     }
