@@ -23,7 +23,7 @@ class NewsViewController: UIViewController {
         navigationItem.title = "News"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Courier new", size: 20)!]
         
-        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: String(describing: NewsTableViewCell.self))
+        tableView.register(CommonTableViewCell.self, forCellReuseIdentifier: String(describing: CommonTableViewCell.self))
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
@@ -59,12 +59,17 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: NewsTableViewCell.self), for: indexPath) as? NewsTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommonTableViewCell.self), for: indexPath) as? CommonTableViewCell else { return UITableViewCell() }
         guard let new = newsPresenter?.news[indexPath.row] else { return UITableViewCell() }
         cell.delegate = self
         cell.fillCell(from: new)
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let new = newsPresenter?.news[indexPath.row]
+        newsPresenter?.goToDetailNewsViewController(with: new)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

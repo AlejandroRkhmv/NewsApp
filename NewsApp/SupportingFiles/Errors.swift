@@ -11,5 +11,8 @@ enum Errors: String, Error {
     case errorGetDataNewsFromServer
     case nilData = "Data == nil"
     case decodeData = "Can not decode data"
-    
+    case entity = "Error create entity for saving favorite new"
+    case save = "Error during saving"
+    case saveAfterDeleting = "Error during saving after deleting"
+    case getNews = "Cannot get news from CoreData"
 }

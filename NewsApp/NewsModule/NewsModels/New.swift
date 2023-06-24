@@ -13,6 +13,7 @@ class New {
     let content: String
     let date: String
     let imageURL: String
+    var imageData: Data?
     let link: String
     let creator: [String]
     
@@ -24,5 +25,17 @@ class New {
         self.link = new.link ?? ""
         self.date = new.pubDate ?? ""
         self.imageURL = new.imageURL ?? ""
+    }
+    
+    init?(new: FavoriteNew) {
+        guard let creator = new.creator else { return nil }
+        self.creator = [creator]
+        self.imageURL = ""
+        self.title = new.title ?? ""
+        self.description = new.descript ?? ""
+        self.content = new.content ?? ""
+        self.link = new.link ?? ""
+        self.date = new.date ?? ""
+        self.imageData = new.imageData
     }
 }

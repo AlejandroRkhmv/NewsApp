@@ -2,13 +2,13 @@
 //  FavoriteNew+CoreDataProperties.swift
 //  NewsApp
 //
-//  Created by Александр Рахимов on 23.06.2023.
+//  Created by Александр Рахимов on 24.06.2023.
 //
 //
 
 import Foundation
 import CoreData
-import UIKit
+
 
 extension FavoriteNew {
 
@@ -20,7 +20,7 @@ extension FavoriteNew {
     @NSManaged public var creator: String?
     @NSManaged public var date: String?
     @NSManaged public var descript: String?
-    @NSManaged public var image: UIImage?
+    @NSManaged public var imageData: Data?
     @NSManaged public var link: String?
     @NSManaged public var title: String?
 

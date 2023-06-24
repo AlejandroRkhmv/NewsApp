@@ -14,16 +14,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let builder = Builder()
-        let newsViewController = builder.createNewsViewController()
-        let favoriteNewsViewController = FavoriteNewsTableViewController()
+        let newsNavigationController = UINavigationController()
+        let newsRouter = NewsRouter(navigationController: newsNavigationController)
+        newsRouter.openViewController()
         
-        let newsNavigationController = UINavigationController(rootViewController: newsViewController)
-        let favoriteNewsNavigationController = UINavigationController(rootViewController: favoriteNewsViewController)
         
-        // MARK: - create and configure tabBarController
+        let favoriteNewsNavigationController = UINavigationController()
+        let favoriterouter = FavoriteRouter(navigationController: favoriteNewsNavigationController)
+        favoriterouter.openViewController()
+        
         // MARK: - create and configure tabBarController
         let tabBarViewController = UITabBarController()
         tabBarViewController.setViewControllers([newsNavigationController, favoriteNewsNavigationController], animated: true)
@@ -32,8 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         tabBarViewController.tabBar.tintColor = .red
         tabBarViewController.tabBar.backgroundColor = .white
         
-        newsViewController.view.reloadInputViews()
-        favoriteNewsViewController.view.reloadInputViews()
+        newsNavigationController.viewControllers[0].view.reloadInputViews()
+        favoriteNewsNavigationController.viewControllers[0].view.reloadInputViews()
         
         window?.backgroundColor = .white
         window?.rootViewController = tabBarViewController
@@ -68,7 +70,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.saveContext()
     }
 
 

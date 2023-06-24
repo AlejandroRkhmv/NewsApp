@@ -13,6 +13,7 @@ protocol NewsInteractorProtocol {
     var newsCreator: NewsCreatorProtocol? { get set }
     
     init(networkService: NetworkServiceProtocol?, jsonParser: JSONParserProtocol?, newsCreator: NewsCreatorProtocol?)
+    
     func needNewsForTable(completionHandler: @escaping (([New]) -> Void))
     func loadImageData(from urlString: String, completionHandler: @escaping ((Data) -> Void))
 }

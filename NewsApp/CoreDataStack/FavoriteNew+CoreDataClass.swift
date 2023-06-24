@@ -2,7 +2,7 @@
 //  FavoriteNew+CoreDataClass.swift
 //  NewsApp
 //
-//  Created by Александр Рахимов on 23.06.2023.
+//  Created by Александр Рахимов on 24.06.2023.
 //
 //
 
