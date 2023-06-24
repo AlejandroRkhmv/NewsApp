@@ -7,12 +7,7 @@
 
 import Foundation
 
-protocol NetworkServiceProtocol {
-    func newsRequest(with urlString: String, completion: @escaping (Data) -> Void)
-}
-
-class NetworkService: NetworkServiceProtocol {
-    
+final class NetworkService: NetworkServiceProtocol {
     let sessionService = SessionService()
     
     func newsRequest(with urlString: String, completion: @escaping (Data) -> Void) {

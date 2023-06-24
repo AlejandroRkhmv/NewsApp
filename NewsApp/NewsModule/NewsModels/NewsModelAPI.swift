@@ -7,16 +7,14 @@
 
 import Foundation
 
-// MARK: - News
 struct NewsModelAPI: Codable {
     let status: String
     let totalResults: Int
-    let results: [APINew]
+    let results: [APINews]
     let nextPage: String
 }
 
-// MARK: - Result
-struct APINew: Codable {
+struct APINews: Codable {
     let title: String?
     let link: String?
     let creator: [String]?

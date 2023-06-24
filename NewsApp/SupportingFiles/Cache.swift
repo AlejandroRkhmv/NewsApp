@@ -7,19 +7,15 @@
 
 import Foundation
 
-class Cache {
-    
+final class Cache {
     static var cache: NSCache<AnyObject, DataCoverega> = {
         let cache = NSCache<AnyObject, DataCoverega>()
         return cache
     }()
-    
-    private init() {
-        
-    }
+    private init() {}
 }
 
-class DataCoverega {
+final class DataCoverega {
     let data: Data
     init (data: Data) {
         self.data = data

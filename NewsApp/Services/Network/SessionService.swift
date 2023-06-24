@@ -7,8 +7,8 @@
 
 import Foundation
 
-class SessionService {
-    
+final class SessionService {
+
     func requestSession(with url: URL, completion: @escaping (Data) -> Void) {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, _, error in

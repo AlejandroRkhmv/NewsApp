@@ -7,8 +7,7 @@
 
 import Foundation
 
-class Constants {
-    
+final class Constants {
     static let shared = Constants()
     private let apiKey = "pub_2489848c1bd14d0d2fdda41dd8482c6b6c036"
     

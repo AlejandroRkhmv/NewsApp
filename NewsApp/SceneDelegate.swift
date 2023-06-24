@@ -7,39 +7,29 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+        let navigationControllers = setViewControllers()
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let newsNavigationController = UINavigationController()
-        let newsRouter = NewsRouter(navigationController: newsNavigationController)
-        newsRouter.openViewController()
-        
-        
-        let favoriteNewsNavigationController = UINavigationController()
-        let favoriterouter = FavoriteRouter(navigationController: favoriteNewsNavigationController)
-        favoriterouter.openViewController()
-        
-        // MARK: - create and configure tabBarController
-        let tabBarViewController = UITabBarController()
-        tabBarViewController.setViewControllers([newsNavigationController, favoriteNewsNavigationController], animated: true)
-        
-        tabBarViewController.tabBar.unselectedItemTintColor = .black
-        tabBarViewController.tabBar.tintColor = .red
-        tabBarViewController.tabBar.backgroundColor = .white
-        
-        newsNavigationController.viewControllers[0].view.reloadInputViews()
-        favoriteNewsNavigationController.viewControllers[0].view.reloadInputViews()
-        
         window?.backgroundColor = .white
-        window?.rootViewController = tabBarViewController
+        window?.rootViewController = TabBarCreator.createAndConfigureTabBarController(with: navigationControllers)
         window?.makeKeyAndVisible()
+        updateViewControllers(navigationControllers: navigationControllers)
+    }
+    
+    // MARK: - setViewControllers
+    private func setViewControllers() -> [UINavigationController] {
+        NavigationControllerCreator.createNavigationControllers()
+    }
+    
+    // MARK: - updateViewControllers
+    private func updateViewControllers(navigationControllers: [UINavigationController]) {
+        ViewControllersUpdater.updateViewControllers(for: navigationControllers)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -72,7 +62,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.saveContext()
     }
-
-
 }
 

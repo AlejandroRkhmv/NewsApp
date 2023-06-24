@@ -7,11 +7,7 @@
 
 import UIKit
 
-protocol NewTableViewCellDelegate {
-    func loadImage(from urlString: String, completionHandler: @escaping ((Data) -> Void))
-}
-
-class CommonTableViewCell: UITableViewCell {
+final class CommonTableViewCell: UITableViewCell {
     var delegate: NewTableViewCellDelegate?
     let containerLabelsView = UIStackView()
     var descriptionLabel: UILabel = {
@@ -19,7 +15,6 @@ class CommonTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.font = UIFont(name: "Courier new", size: 20)
-        label.textColor = .red
         return label
     }()
     var creatorLabel: UILabel = {
@@ -53,7 +48,7 @@ class CommonTableViewCell: UITableViewCell {
         didSet {
             imageNew.image = nil
             activityIndicator.startAnimating()
-            imageNew.backgroundColor = .lightGray
+            imageNew.backgroundColor = .gray
             if let urlForImage = urlForImage {
                 DispatchQueue.global().async {
                     self.delegate?.loadImage(from: urlForImage) { data in
@@ -83,11 +78,17 @@ class CommonTableViewCell: UITableViewCell {
         makeActivityIndicator()
     }
     
-    func fillCell(from new: New) {
-        self.creatorLabel.text = new.creator.reduce("") { $0 + " " + $1 }
+    func fillCell(from new: News) {
+        var creatorLabel = new.creator.reduce("") { $0 + " " + $1}
+        creatorLabel.removeFirst()
+        self.creatorLabel.text = creatorLabel
         self.descriptionLabel.text = new.title
         self.dateLabel.text = new.date
-        guard let dataForImage = new.imageData else {
+        if let dataForImage = new.imageData {
+            DispatchQueue.main.async {
+                self.imageNew.image = UIImage(data: dataForImage)
+            }
+        } else {
             guard new.imageURL != "" else {
                 DispatchQueue.main.async {
                     self.imageNew.image = UIImage(named: "noImage")
@@ -97,58 +98,6 @@ class CommonTableViewCell: UITableViewCell {
                 return
             }
             self.urlForImage = new.imageURL
-            return
         }
-        imageNew.image = UIImage(data: dataForImage)
-    }
-
-}
-
-extension CommonTableViewCell {
-    
-    private func setNewsImage() {
-        imageNew.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(imageNew)
-        
-        imageNew.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        imageNew.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        imageNew.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
-        imageNew.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
-    }
-    
-    private func setContainerLabelsView() {
-        containerLabelsView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(containerLabelsView)
-        
-        containerLabelsView.leadingAnchor.constraint(equalTo: imageNew.trailingAnchor, constant: 10).isActive = true
-        containerLabelsView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
-        contentView.trailingAnchor.constraint(equalTo: containerLabelsView.trailingAnchor, constant: 0).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: containerLabelsView.bottomAnchor, constant: 30).isActive = true
-    }
-    
-    private func addSubLabelsOnContainerLabelsView() {
-        containerLabelsView.axis = .vertical
-        containerLabelsView.spacing = 5
-        containerLabelsView.alignment = .fill
-        containerLabelsView.distribution = .fillProportionally
-        containerLabelsView.addArrangedSubview(descriptionLabel)
-        containerLabelsView.addArrangedSubview(creatorLabel)
-    }
-    
-    private func serDateLabel() {
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(dateLabel)
-        
-        dateLabel.topAnchor.constraint(equalTo: containerLabelsView.bottomAnchor, constant: 10).isActive = true
-        dateLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        contentView.trailingAnchor.constraint(equalTo: dateLabel.trailingAnchor, constant: 10).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10).isActive = true
-    }
-    
-    private func makeActivityIndicator() {
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(activityIndicator)
-        activityIndicator.centerXAnchor.constraint(equalTo: imageNew.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: imageNew.centerYAnchor).isActive = true
     }
 }
