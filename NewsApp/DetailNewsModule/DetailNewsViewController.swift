@@ -140,7 +140,10 @@ extension DetailNewsViewController: DetailNewsViewControllerProtocol {
         self.creatorLabel.text = new.creator.reduce("") { $0 + " " + $1 }
         self.linkNewLabel.text = new.link
         self.contentLabel.text = new.content
-        guard let data = new.imageData else { return }
+        guard let data = new.imageData else {
+            self.imageNew.heightAnchor.constraint(equalToConstant: 0).isActive = true
+            self.imageNew.layoutIfNeeded()
+            return }
         self.imageNew.image = UIImage(data: data)
     }
 }

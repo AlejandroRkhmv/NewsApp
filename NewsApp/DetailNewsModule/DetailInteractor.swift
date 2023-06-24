@@ -54,8 +54,10 @@ class DetailInteractor: DetailInteractorProtocol {
         guard let context = self.context else { return }
         let fetchRequest: NSFetchRequest<FavoriteNew> = FavoriteNew.fetchRequest()
         if let news = try? context.fetch(fetchRequest) {
-            for new in news {
-                context.delete(new)
+            for newFromCoreData in news {
+                if newFromCoreData.title == new?.title {
+                    context.delete(newFromCoreData)
+                }
             }
         }
         do {

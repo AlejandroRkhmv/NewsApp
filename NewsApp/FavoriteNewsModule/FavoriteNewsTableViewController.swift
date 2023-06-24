@@ -33,6 +33,11 @@ class FavoriteNewsViewController: UIViewController {
         
         favoriteNewsPresenter?.needsFavoriteNews()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        favoriteNewsPresenter?.needsFavoriteNews()
+    }
 }
 
 extension FavoriteNewsViewController {

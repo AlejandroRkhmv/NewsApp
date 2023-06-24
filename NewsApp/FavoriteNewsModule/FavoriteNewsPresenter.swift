@@ -39,10 +39,10 @@ class FavoriteNewsPresenter: FavoriteNewsPresenterProtocol {
         favoriteNewsInteractor?.context = self.context
         favoriteNewsInteractor?.getFavoriteNewsFromCoreData(completionHandler: { news in
             self.favoriteNews = news
+            DispatchQueue.main.async {
+                self.favoriteNewsViewVontroller?.reloadData()
+            }
         })
-        DispatchQueue.main.async {
-            self.favoriteNewsViewVontroller?.reloadData()
-        }
     }
     
     func goToDetailNewsViewController(with new: New) {
