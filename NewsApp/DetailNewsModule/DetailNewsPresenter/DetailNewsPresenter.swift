@@ -36,10 +36,10 @@ final class DetailNewsPresenter: DetailNewsPresenterProtocol {
     }
     
     func saveFavoritesNew() {
-        detailInteractor?.saveFavoritesNew(new: self.new)
+        detailInteractor?.saveFavoritesNew(news: self.new)
     }
     
     func deleteFavoritesNew() {
-        detailInteractor?.deleteFavoritesNew(new: self.new)
+        detailInteractor?.deleteFavoritesNew(news: self.new)
     }
 }

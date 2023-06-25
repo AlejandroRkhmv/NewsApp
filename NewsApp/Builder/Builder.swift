@@ -11,10 +11,10 @@ import CoreData
 final class Builder: BuilderProtocol {
     let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext
     let networkService = NetworkService()
+    let newsCreator = NewsCreator()
     
     func createNewsViewController(router: RouterProtocol) -> UIViewController {
         let jsonParser = JSONParser()
-        let newsCreator = NewsCreator()
         let newsViewController = NewsViewController()
         guard let context = self.context else { return newsViewController }
         let newsInteractor = NewsInteractor(networkService: networkService, jsonParser: jsonParser, newsCreator: newsCreator)
@@ -33,7 +33,7 @@ final class Builder: BuilderProtocol {
     
     func createDetailNewsViewController(router: RouterProtocol, context: NSManagedObjectContext, new: News?) -> UIViewController {
         let detailNewsViewController = DetailNewsViewController()
-        let detailInteractor = DetailInteractor(networkService: networkService, context: context)
+        let detailInteractor = DetailInteractor(networkService: networkService, newsCreator: newsCreator, context: context)
         let detailNewsPresenter = DetailNewsPresenter(detailNewsViewController: detailNewsViewController, detailInteractor: detailInteractor, router: router, new: new)
         detailNewsViewController.detailNewsPresenter = detailNewsPresenter
         return detailNewsViewController

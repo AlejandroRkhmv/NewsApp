@@ -15,9 +15,9 @@ final class DetailNewsViewController: UIViewController {
     let scrollContainer = UIStackView()
     let titleLabel = UILabel()
     let creatorLabel = UILabel()
-    let imageNew = UIImageView()
+    let imageNews = UIImageView()
     let contentLabel = UILabel()
-    let linkNewLabel = UILabel()
+    let linkNewsLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

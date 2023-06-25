@@ -10,10 +10,12 @@ import CoreData
 
 final class DetailInteractor: DetailInteractorProtocol {
     var networkService: NetworkServiceProtocol?
+    var newsCreator: NewsCreatorProtocol?
     var context: NSManagedObjectContext!
     
-    required init(networkService: NetworkServiceProtocol?, context: NSManagedObjectContext!) {
+    required init(networkService: NetworkServiceProtocol?, newsCreator: NewsCreatorProtocol?, context: NSManagedObjectContext!) {
         self.networkService = networkService
+        self.newsCreator = newsCreator
         self.context = context
     }
     
@@ -21,17 +23,11 @@ final class DetailInteractor: DetailInteractorProtocol {
         networkService?.newsRequest(with: imageUrl, completion: completionHandler)
     }
     
-    func saveFavoritesNew(new: News?) {
-        guard let new = new,
+    func saveFavoritesNew(news: News?) {
+        guard let news = news,
         let context = self.context else { return }
-        let favoriteNew = FavoriteNew(context: context)
-        favoriteNew.title = new.title
-        favoriteNew.descript = new.description
-        favoriteNew.content = new.content
-        favoriteNew.imageData = new.imageData
-        favoriteNew.link = new.link
-        favoriteNew.creator = new.creator.reduce("") { $0 + " " + $1 }
-        favoriteNew.date = new.date
+        let favoriteNews = FavoriteNew(context: context)
+        newsCreator?.createFavoriteNewsForCoreData(favoriteNews: favoriteNews, news: news)
         do {
             try context.save()
         } catch {
@@ -39,13 +35,13 @@ final class DetailInteractor: DetailInteractorProtocol {
         }
     }
     
-    func deleteFavoritesNew(new: News?) {
+    func deleteFavoritesNew(news: News?) {
         guard let context = self.context else { return }
         let fetchRequest: NSFetchRequest<FavoriteNew> = FavoriteNew.fetchRequest()
-        if let news = try? context.fetch(fetchRequest) {
-            for newFromCoreData in news {
-                if newFromCoreData.title == new?.title {
-                    context.delete(newFromCoreData)
+        if let favoriteNewsFromCoreData = try? context.fetch(fetchRequest) {
+            for newsFromCoreData in favoriteNewsFromCoreData {
+                if newsFromCoreData.title == news?.title {
+                    context.delete(newsFromCoreData)
                 }
             }
         }

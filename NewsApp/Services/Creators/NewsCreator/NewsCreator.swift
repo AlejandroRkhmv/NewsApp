@@ -16,4 +16,14 @@ final class NewsCreator: NewsCreatorProtocol {
         }
         return newsForTable
     }
+    
+    func createFavoriteNewsForCoreData(favoriteNews: FavoriteNew, news: News) {
+        favoriteNews.title = news.title
+        favoriteNews.descript = news.description
+        favoriteNews.content = news.content
+        favoriteNews.imageData = news.imageData
+        favoriteNews.link = news.link
+        favoriteNews.creator = news.creator.reduce("") { $0 + " " + $1 }
+        favoriteNews.date = news.date
+    }
 }

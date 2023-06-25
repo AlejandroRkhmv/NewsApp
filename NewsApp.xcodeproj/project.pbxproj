@@ -64,6 +64,11 @@
 		21D2DAA32A477B5E007EFA6E /* DetailNewsViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D2DAA22A477B5E007EFA6E /* DetailNewsViewController + Extensions.swift */; };
 		21D2DAA62A477BAD007EFA6E /* DetailInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D2DAA52A477BAD007EFA6E /* DetailInteractorProtocol.swift */; };
 		21D2DAA92A477C09007EFA6E /* DetailNewsPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D2DAA82A477C09007EFA6E /* DetailNewsPresenterProtocol.swift */; };
+		21D2DB1F2A47BDAF007EFA6E /* NewsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D2DB1E2A47BDAF007EFA6E /* NewsViewControllerTests.swift */; };
+		21D2DB212A47BDC2007EFA6E /* FavoriteNewsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D2DB202A47BDC2007EFA6E /* FavoriteNewsViewControllerTests.swift */; };
+		21D2DB232A47BDD1007EFA6E /* DetailNewsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D2DB222A47BDD1007EFA6E /* DetailNewsViewControllerTests.swift */; };
+		21D2DB252A47BF0A007EFA6E /* CommonTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D2DB242A47BF0A007EFA6E /* CommonTableViewCellTests.swift */; };
+		21D2DB272A47BF28007EFA6E /* NewsCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D2DB262A47BF27007EFA6E /* NewsCreatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +150,11 @@
 		21D2DAA22A477B5E007EFA6E /* DetailNewsViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailNewsViewController + Extensions.swift"; sourceTree = "<group>"; };
 		21D2DAA52A477BAD007EFA6E /* DetailInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractorProtocol.swift; sourceTree = "<group>"; };
 		21D2DAA82A477C09007EFA6E /* DetailNewsPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNewsPresenterProtocol.swift; sourceTree = "<group>"; };
+		21D2DB1E2A47BDAF007EFA6E /* NewsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewControllerTests.swift; sourceTree = "<group>"; };
+		21D2DB202A47BDC2007EFA6E /* FavoriteNewsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteNewsViewControllerTests.swift; sourceTree = "<group>"; };
+		21D2DB222A47BDD1007EFA6E /* DetailNewsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailNewsViewControllerTests.swift; sourceTree = "<group>"; };
+		21D2DB242A47BF0A007EFA6E /* CommonTableViewCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTableViewCellTests.swift; sourceTree = "<group>"; };
+		21D2DB262A47BF27007EFA6E /* NewsCreatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCreatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +228,11 @@
 			isa = PBXGroup;
 			children = (
 				21A970912A444D5C0053DCF4 /* NewsAppTests.swift */,
+				21D2DB1E2A47BDAF007EFA6E /* NewsViewControllerTests.swift */,
+				21D2DB202A47BDC2007EFA6E /* FavoriteNewsViewControllerTests.swift */,
+				21D2DB222A47BDD1007EFA6E /* DetailNewsViewControllerTests.swift */,
+				21D2DB242A47BF0A007EFA6E /* CommonTableViewCellTests.swift */,
+				21D2DB262A47BF27007EFA6E /* NewsCreatorTests.swift */,
 			);
 			path = NewsAppTests;
 			sourceTree = "<group>";
@@ -652,7 +667,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21D2DB232A47BDD1007EFA6E /* DetailNewsViewControllerTests.swift in Sources */,
+				21D2DB212A47BDC2007EFA6E /* FavoriteNewsViewControllerTests.swift in Sources */,
 				21A970922A444D5C0053DCF4 /* NewsAppTests.swift in Sources */,
+				21D2DB252A47BF0A007EFA6E /* CommonTableViewCellTests.swift in Sources */,
+				21D2DB1F2A47BDAF007EFA6E /* NewsViewControllerTests.swift in Sources */,
+				21D2DB272A47BF28007EFA6E /* NewsCreatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

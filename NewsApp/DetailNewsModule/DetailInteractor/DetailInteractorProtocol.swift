@@ -10,11 +10,12 @@ import CoreData
 
 protocol DetailInteractorProtocol {
     var networkService: NetworkServiceProtocol? { get set }
+    var newsCreator: NewsCreatorProtocol? { get set }
     var context: NSManagedObjectContext! { get set }
     
-    init(networkService: NetworkServiceProtocol?, context: NSManagedObjectContext!)
+    init(networkService: NetworkServiceProtocol?, newsCreator: NewsCreatorProtocol?, context: NSManagedObjectContext!)
     
     func needDataForImageNews(with imageUrl: String, completionHandler: @escaping ((Data) -> Void))
-    func saveFavoritesNew(new: News?)
-    func deleteFavoritesNew(new: News?)
+    func saveFavoritesNew(news: News?)
+    func deleteFavoritesNew(news: News?)
 }

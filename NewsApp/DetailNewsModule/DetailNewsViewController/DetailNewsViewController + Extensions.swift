@@ -49,26 +49,26 @@ extension DetailNewsViewController {
    }
 
    func setimageNew() {
-       imageNew.translatesAutoresizingMaskIntoConstraints = false
-       scrollContainer.addArrangedSubview(imageNew)
+       imageNews.translatesAutoresizingMaskIntoConstraints = false
+       scrollContainer.addArrangedSubview(imageNews)
 
-       imageNew.contentMode = .scaleAspectFill
-       imageNew.layer.cornerRadius = 10
-       imageNew.clipsToBounds = true
+       imageNews.contentMode = .scaleAspectFill
+       imageNews.layer.cornerRadius = 10
+       imageNews.clipsToBounds = true
 
-       imageNew.widthAnchor.constraint(equalToConstant: scrollContainer.bounds.size.width * 0.9).isActive = true
-       imageNew.heightAnchor.constraint(equalToConstant: view.bounds.size.height * 0.3).isActive = true
+       imageNews.widthAnchor.constraint(equalToConstant: scrollContainer.bounds.size.width * 0.9).isActive = true
+       imageNews.heightAnchor.constraint(equalToConstant: view.bounds.size.height * 0.3).isActive = true
    }
 
    func setLinkLabel() {
-       linkNewLabel.translatesAutoresizingMaskIntoConstraints = false
-       scrollContainer.addArrangedSubview(linkNewLabel)
+       linkNewsLabel.translatesAutoresizingMaskIntoConstraints = false
+       scrollContainer.addArrangedSubview(linkNewsLabel)
 
-       linkNewLabel.numberOfLines = 0
-       linkNewLabel.font = UIFont(name: "Courier new", size: 10)
-       linkNewLabel.textAlignment = .center
+       linkNewsLabel.numberOfLines = 0
+       linkNewsLabel.font = UIFont(name: "Courier new", size: 10)
+       linkNewsLabel.textAlignment = .center
 
-       linkNewLabel.widthAnchor.constraint(equalToConstant: scrollContainer.bounds.size.width * 0.9).isActive = true
+       linkNewsLabel.widthAnchor.constraint(equalToConstant: scrollContainer.bounds.size.width * 0.9).isActive = true
    }
 
    func setContentLabel() {
@@ -103,13 +103,13 @@ extension DetailNewsViewController: DetailNewsViewControllerProtocol {
        guard let new = new else { return }
        self.titleLabel.text = new.title
        self.creatorLabel.text = new.creator.reduce("") { $0 + " " + $1 }
-       self.linkNewLabel.attributedText = createLinkAttributedStrring(from: new.link)
+       self.linkNewsLabel.attributedText = createLinkAttributedStrring(from: new.link)
        self.contentLabel.text = new.content
        guard let data = new.imageData else {
-           self.imageNew.heightAnchor.constraint(equalToConstant: 0).isActive = true
-           self.imageNew.layoutIfNeeded()
+           self.imageNews.heightAnchor.constraint(equalToConstant: 0).isActive = true
+           self.imageNews.layoutIfNeeded()
            return }
-       self.imageNew.image = UIImage(data: data)
+       self.imageNews.image = UIImage(data: data)
    }
 }
 
