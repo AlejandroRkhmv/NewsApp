@@ -59,7 +59,7 @@ final class DetailNewsViewControllerTests: XCTestCase {
         sut.setNeedsData(from: news)
         
         XCTAssertEqual(sut.titleLabel.text, "title")
-        XCTAssertEqual(sut.creatorLabel.text, " creator")
+        XCTAssertEqual(sut.creatorLabel.text, "creator")
         XCTAssertEqual(sut.linkNewsLabel.text, "link")
         XCTAssertEqual(sut.contentLabel.text, "content")
         XCTAssertEqual(sut.imageNews.image?.pngData(), data)

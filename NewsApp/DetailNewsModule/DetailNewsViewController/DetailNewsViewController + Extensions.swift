@@ -104,6 +104,13 @@ extension DetailNewsViewController {
 
 // MARK: - Extension DetailNewsViewControllerProtocol
 extension DetailNewsViewController: DetailNewsViewControllerProtocol {
+    func reloadView() {
+        NSLayoutConstraint.activate([
+        imageNews.widthAnchor.constraint(equalToConstant: scrollContainer.bounds.size.width * 0.9),
+        imageNews.heightAnchor.constraint(equalToConstant: view.bounds.size.height * 0.3),
+        ])
+        self.view.layoutIfNeeded()
+    }
     
     // MARK: - Set Needs Data For DetailNewsViewController
    func setNeedsData(from new: News) {

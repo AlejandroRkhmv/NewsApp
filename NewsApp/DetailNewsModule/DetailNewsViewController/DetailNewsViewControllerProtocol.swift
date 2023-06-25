@@ -8,5 +8,6 @@
 import Foundation
 
 protocol DetailNewsViewControllerProtocol: AnyObject {
+    func reloadView()
     func setNeedsData(from new: News)
 }

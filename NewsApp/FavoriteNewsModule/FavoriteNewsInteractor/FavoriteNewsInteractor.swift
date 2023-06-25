@@ -22,7 +22,7 @@ final class FavoriteNewsInteractor: FavoriteNewsInteractorProtocol {
         guard let newsFromCoreData = try? context.fetch(fetchRequest) else {
             print(Errors.getNews)
             return }
-        let favoriteNews = newsCreator.createFavoriteNews(from: newsFromCoreData)
+        let favoriteNews = newsCreator.createFavoriteNews(from: newsFromCoreData.reversed())
         completionHandler(favoriteNews)
     }
 }

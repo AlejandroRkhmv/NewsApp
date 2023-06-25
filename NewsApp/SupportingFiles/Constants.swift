@@ -9,15 +9,15 @@ import Foundation
 
 final class Constants {
     static let shared = Constants()
-    private let apiKey = "pub_2489848c1bd14d0d2fdda41dd8482c6b6c036"
+    private let apiKey = "pub_251462d445c7464a6d50c855f1cd7f1ab572d"
     
     var urlString: String {
-        let urlStr = "https://newsdata.io/api/1/news?apikey=\(self.apiKey)&q=dogs"
+        let urlStr = "https://newsdata.io/api/1/news?apikey=\(self.apiKey)&q=pizza"
         return urlStr
     }
     
     var urlStringNextPage: String {
-        let urlStr = "https://newsdata.io/api/1/news?apikey=\(self.apiKey)&q=dogs&page="
+        let urlStr = "https://newsdata.io/api/1/news?apikey=\(self.apiKey)&q=pizza&page="
         return urlStr
     }
     

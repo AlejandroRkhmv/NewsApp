@@ -37,7 +37,7 @@ final class NewsCreator: NewsCreatorProtocol {
     
     func createFavoriteNews(from newsFromCoreData: [FavoriteNew]) -> [News] {
         var favoriteNews = [News]()
-        for news in newsFromCoreData.reversed() {
+        for news in newsFromCoreData {
             guard let favoriteNew = News(news: news) else { return [] }
             favoriteNews.append(favoriteNew)
         }

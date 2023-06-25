@@ -35,18 +35,12 @@ final class NewsCreatorTests: XCTestCase {
         XCTAssertEqual(newsForTable[1].title, newsAPITwo.title)
     }
     
-    func commonFunctionForCreatingFavoriteNews() -> (FavoriteNew, News, FavoriteNew, News) {
+    func commonFunctionForCreatingFavoriteNews() -> (FavoriteNew, News) {
         let newsAPI = APINews(title: "title", link: "link", creator: ["creator"], description: "description", content: "content", pubDate: "pubDate", imageURL: "")
         let news = News(news: newsAPI)
         let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext
         let favoriteNews = FavoriteNew(context: context!)
-        
-        let newsAPI2 = APINews(title: "title", link: "link", creator: ["creator"], description: "description2", content: "content", pubDate: "pubDate", imageURL: "")
-        let news2 = News(news: newsAPI2)
-        let context2 = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext
-        let favoriteNews2 = FavoriteNew(context: context2!)
-        
-        return (favoriteNews, news, favoriteNews2, news2)
+        return (favoriteNews, news)
     }
     
     func testCheckCreateFavoriteNewsForCoreData() {
@@ -64,16 +58,20 @@ final class NewsCreatorTests: XCTestCase {
         let allNews = commonFunctionForCreatingFavoriteNews()
         let favoriteNews = allNews.0
         let news = allNews.1
-        let favoriteNews2 = allNews.2
-        let news2 = allNews.3
-        
         
         sut.createFavoriteNewsForCoreData(favoriteNews: favoriteNews, news: news)
-        sut.createFavoriteNewsForCoreData(favoriteNews: favoriteNews2, news: news2)
         
-        let favoriteNewsArray = [favoriteNews, favoriteNews2]
+        let favoriteNewsArray = [favoriteNews]
         let newsForFavoriteNewsViewController = sut.createFavoriteNews(from: favoriteNewsArray)
         
-        XCTAssertEqual(favoriteNewsArray[1].descript, newsForFavoriteNewsViewController[0].description)
+        XCTAssertEqual(favoriteNewsArray[0].descript, newsForFavoriteNewsViewController[0].description)
+    }
+    
+    func testCheckCreateInfoNewsObject() {
+        let newsAPI = APINews(title: "title", link: "link", creator: ["creator"], description: "description", content: "content", pubDate: "pubDate", imageURL: "")
+        let newsFromApi = NewsModelAPI(status: "status", totalResults: 100, results: [newsAPI], nextPage: "nextPage")
+        let infoNews = sut.createInfoNews(from: newsFromApi)
+        
+        XCTAssertEqual(newsFromApi.totalResults, infoNews.totalResults)
     }
 }

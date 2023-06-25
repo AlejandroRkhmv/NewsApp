@@ -26,7 +26,11 @@ final class DetailNewsPresenter: DetailNewsPresenterProtocol {
                 self.news.imageData = data
                 DispatchQueue.main.async {
                     self.detailNewsViewController?.setNeedsData(from: self.news)
+                    self.detailNewsViewController?.reloadView()
                 }
+            }
+            DispatchQueue.main.async {
+                self.detailNewsViewController?.setNeedsData(from: self.news)
             }
         } else {
             DispatchQueue.main.async {

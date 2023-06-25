@@ -25,14 +25,26 @@ final class FavoriteNewsPresenter: FavoriteNewsPresenterProtocol {
     func needsFavoriteNews() {
         favoriteNewsInteractor.context = self.context
         favoriteNewsInteractor.getFavoriteNewsFromCoreData(completionHandler: { news in
-            self.favoriteNews = news
-            DispatchQueue.main.async {
-                self.favoriteNewsViewVontroller?.reloadData()
+            guard let currentCount = self.favoriteNews?.count else {
+                self.favoriteNews = news
+                DispatchQueue.main.async {
+                    self.favoriteNewsViewVontroller?.reloadData()
+                }
+                return
+            }
+            if currentCount != news.count {
+                self.favoriteNews = news
+                DispatchQueue.main.async {
+                    self.favoriteNewsViewVontroller?.reloadData()
+                }
             }
         })
     }
+                                                           
     
     func goToDetailNewsViewController(with news: News) {
         router.goToDetailViewController(news: news, context: self.context)
     }
 }
+
+

@@ -81,6 +81,8 @@ final class CommonTableViewCell: UITableViewCell {
         self.dateLabel.text = new.date
         if let dataForImage = new.imageData {
             DispatchQueue.main.async {
+                self.imageNew.backgroundColor = self.contentView.backgroundColor
+                self.activityIndicator.stopAnimating()
                 self.imageNew.image = UIImage(data: dataForImage)
             }
         } else {
