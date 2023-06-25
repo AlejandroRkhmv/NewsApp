@@ -14,6 +14,8 @@ final class NewsPresenter: NewsPresenterProtocol {
     var newsRouter: RouterProtocol
     var context: NSManagedObjectContext?
     var news = [News]()
+    var totalResults = 0
+    var nextPage = ""
     
     required init(newsViewController: NewsViewControllerProtocol?, newsInteractor: NewsInteractorProtocol, newsRouter: RouterProtocol, context: NSManagedObjectContext?) {
         self.newsViewController = newsViewController
@@ -23,13 +25,29 @@ final class NewsPresenter: NewsPresenterProtocol {
     }
     
     func getNewsForTable() {
-        newsInteractor.needNewsForTable(completionHandler: { [weak self] news in
+        newsInteractor.needNewsForTable(newxPage: self.nextPage, typeOfNews: .firstNews, completionHandler: { [weak self] (news, infoNews) in
             guard let self = self else { return }
             self.news = news
+            self.totalResults = infoNews.totalResults
+            self.nextPage = infoNews.nextPage
             DispatchQueue.main.async {
                 self.newsViewController?.reloadData()
             }
         })
+    }
+    
+    func loadNextNews() {
+        if totalResults > news.count {
+            newsInteractor.needNewsForTable(newxPage: self.nextPage, typeOfNews: .additionalNews, completionHandler: { [weak self] (news, infoNews) in
+                guard let self = self else { return }
+                self.news += news
+                self.totalResults = infoNews.totalResults
+                self.nextPage = infoNews.nextPage
+                DispatchQueue.main.async {
+                    self.newsViewController?.reloadData()
+                }
+            })
+        }
     }
     
     func loadImageData(from urlString: String, completionHandler: @escaping ((Data) -> Void)) {

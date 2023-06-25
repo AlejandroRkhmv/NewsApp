@@ -24,7 +24,6 @@ final class FavoriteNewsViewController: UIViewController {
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
         addTableView()
-        
         favoriteNewsPresenter?.needsFavoriteNews()
     }
     

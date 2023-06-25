@@ -21,8 +21,14 @@ final class DetailNewsPresenter: DetailNewsPresenterProtocol {
     }
     
     func setNeedData() {
-        needDataForImageNews(with: self.news.imageURL) { data in
-            self.news.imageData = data
+        if news.imageData == nil && news.imageURL != "" {
+            needDataForImageNews(with: self.news.imageURL) { data in
+                self.news.imageData = data
+                DispatchQueue.main.async {
+                    self.detailNewsViewController?.setNeedsData(from: self.news)
+                }
+            }
+        } else {
             DispatchQueue.main.async {
                 self.detailNewsViewController?.setNeedsData(from: self.news)
             }

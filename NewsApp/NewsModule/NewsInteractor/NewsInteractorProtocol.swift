@@ -8,12 +8,12 @@
 import Foundation
 
 protocol NewsInteractorProtocol {
-    var networkService: NetworkServiceProtocol? { get set }
-    var jsonParser: JSONParserProtocol? { get set }
-    var newsCreator: NewsCreatorProtocol? { get set }
+    var networkService: NetworkServiceProtocol { get set }
+    var jsonParser: JSONParserProtocol { get set }
+    var newsCreator: NewsCreatorProtocol { get set }
     
-    init(networkService: NetworkServiceProtocol?, jsonParser: JSONParserProtocol?, newsCreator: NewsCreatorProtocol?)
+    init(networkService: NetworkServiceProtocol, jsonParser: JSONParserProtocol, newsCreator: NewsCreatorProtocol)
     
-    func needNewsForTable(completionHandler: @escaping (([News]) -> Void))
+    func needNewsForTable(newxPage: String, typeOfNews: TypeOfNews, completionHandler: @escaping (([News], InfoNews) -> Void))
     func loadImageData(from urlString: String, completionHandler: @escaping ((Data) -> Void))
 }

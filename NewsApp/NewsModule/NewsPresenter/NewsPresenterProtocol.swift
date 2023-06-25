@@ -18,6 +18,7 @@ protocol NewsPresenterProtocol: AnyObject {
     init(newsViewController: NewsViewControllerProtocol?, newsInteractor: NewsInteractorProtocol, newsRouter: RouterProtocol, context: NSManagedObjectContext?)
     
     func getNewsForTable()
+    func loadNextNews()
     func loadImageData(from urlString: String, completionHandler: @escaping ((Data) -> Void))
     func goToDetailNewsViewController(with new: News)
 }

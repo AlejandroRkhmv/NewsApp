@@ -9,6 +9,11 @@ import Foundation
 
 final class NewsCreator: NewsCreatorProtocol {
     
+    func createInfoNews(from newsAPI: NewsModelAPI) -> InfoNews {
+        let infoNews = InfoNews(news: newsAPI)
+        return infoNews
+    }
+    
     func createNewsForTable(from newsAPI: NewsModelAPI) -> [News] {
         var newsForTable = [News]()
         for newFromAPI in newsAPI.results {

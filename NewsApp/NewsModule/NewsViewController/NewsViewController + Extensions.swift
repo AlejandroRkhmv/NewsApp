@@ -50,6 +50,13 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.delegate = self
         cell.fillCell(from: new)
         cell.selectionStyle = .none
+        
+        // MARK: - Pagination
+        guard let countNews = newsPresenter?.news.count else { return UITableViewCell() }
+        if indexPath.row == countNews - 1 {
+            newsPresenter?.loadNextNews()
+        }
+        
         return cell
     }
     

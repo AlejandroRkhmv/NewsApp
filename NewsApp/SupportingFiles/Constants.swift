@@ -16,5 +16,10 @@ final class Constants {
         return urlStr
     }
     
+    var urlStringNextPage: String {
+        let urlStr = "https://newsdata.io/api/1/news?apikey=\(self.apiKey)&q=dogs&page="
+        return urlStr
+    }
+    
     private init() {}
 }

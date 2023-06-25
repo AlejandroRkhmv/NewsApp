@@ -23,7 +23,6 @@ final class FavoriteNewsPresenter: FavoriteNewsPresenterProtocol {
     }
     
     func needsFavoriteNews() {
-        self.favoriteNews?.removeAll()
         favoriteNewsInteractor.context = self.context
         favoriteNewsInteractor.getFavoriteNewsFromCoreData(completionHandler: { news in
             self.favoriteNews = news
