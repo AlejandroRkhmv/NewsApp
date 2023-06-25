@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Extension FavoriteNewsViewController
 extension FavoriteNewsViewController {
     func addTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,6 +22,7 @@ extension FavoriteNewsViewController {
     }
 }
 
+// MARK: - Extension UITableViewDelegate, UITableViewDataSource
 extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -50,6 +52,7 @@ extension FavoriteNewsViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
+// MARK: - Extension FavoriteNewsViewControllerProtocol
 extension FavoriteNewsViewController: FavoriteNewsViewControllerProtocol {
     func reloadData() {
         self.tableView.reloadData()

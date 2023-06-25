@@ -10,12 +10,12 @@ import CoreData
 
 final class FavoriteNewsPresenter: FavoriteNewsPresenterProtocol {
     weak var favoriteNewsViewVontroller: FavoriteNewsViewControllerProtocol?
-    var favoriteNewsInteractor: FavoriteNewsInteractorProtocol?
-    var router: RouterProtocol?
-    var context: NSManagedObjectContext!
+    var favoriteNewsInteractor: FavoriteNewsInteractorProtocol
+    var router: RouterProtocol
+    var context: NSManagedObjectContext?
     var favoriteNews: [News]?
     
-    required init(favoriteNewsViewVontroller: FavoriteNewsViewControllerProtocol?, favoriteNewsInteractor: FavoriteNewsInteractorProtocol?, router: RouterProtocol?, context: NSManagedObjectContext!) {
+    required init(favoriteNewsViewVontroller: FavoriteNewsViewControllerProtocol?, favoriteNewsInteractor: FavoriteNewsInteractorProtocol, router: RouterProtocol, context: NSManagedObjectContext?) {
         self.favoriteNewsViewVontroller = favoriteNewsViewVontroller
         self.favoriteNewsInteractor = favoriteNewsInteractor
         self.router = router
@@ -23,9 +23,9 @@ final class FavoriteNewsPresenter: FavoriteNewsPresenterProtocol {
     }
     
     func needsFavoriteNews() {
-        //self.favoriteNews?.removeAll()
-        favoriteNewsInteractor?.context = self.context
-        favoriteNewsInteractor?.getFavoriteNewsFromCoreData(completionHandler: { news in
+        self.favoriteNews?.removeAll()
+        favoriteNewsInteractor.context = self.context
+        favoriteNewsInteractor.getFavoriteNewsFromCoreData(completionHandler: { news in
             self.favoriteNews = news
             DispatchQueue.main.async {
                 self.favoriteNewsViewVontroller?.reloadData()
@@ -33,7 +33,7 @@ final class FavoriteNewsPresenter: FavoriteNewsPresenterProtocol {
         })
     }
     
-    func goToDetailNewsViewController(with new: News) {
-        router?.goToDetailViewController(new: new, context: self.context)
+    func goToDetailNewsViewController(with news: News) {
+        router.goToDetailViewController(news: news, context: self.context)
     }
 }

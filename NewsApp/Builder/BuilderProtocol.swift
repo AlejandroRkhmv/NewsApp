@@ -11,5 +11,5 @@ import CoreData
 protocol BuilderProtocol {
     func createNewsViewController(router: RouterProtocol) -> UIViewController
     func createFavoriteNewsViewController(router: RouterProtocol) -> UIViewController
-    func createDetailNewsViewController(router: RouterProtocol, context: NSManagedObjectContext, new: News?) -> UIViewController
+    func createDetailNewsViewController(router: RouterProtocol, context: NSManagedObjectContext?, news: News) -> UIViewController
 }

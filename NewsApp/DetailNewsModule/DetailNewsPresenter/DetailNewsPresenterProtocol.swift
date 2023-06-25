@@ -9,11 +9,11 @@ import Foundation
 
 protocol DetailNewsPresenterProtocol: AnyObject {
     var detailNewsViewController: DetailNewsViewControllerProtocol? { get set }
-    var detailInteractor: DetailInteractorProtocol? { get set }
-    var router: RouterProtocol? { get set }
-    var new: News? { get set }
+    var detailInteractor: DetailInteractorProtocol { get set }
+    var router: RouterProtocol { get set }
+    var news: News { get set }
     
-    init(detailNewsViewController: DetailNewsViewControllerProtocol?, detailInteractor: DetailInteractorProtocol?, router: RouterProtocol?, new: News?)
+    init(detailNewsViewController: DetailNewsViewControllerProtocol?, detailInteractor: DetailInteractorProtocol, router: RouterProtocol, news: News)
     
     func setNeedData()
     func saveFavoritesNew()

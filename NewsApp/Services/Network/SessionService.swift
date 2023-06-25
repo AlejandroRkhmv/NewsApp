@@ -13,7 +13,7 @@ final class SessionService {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, _, error in
             if let error = error {
-                print(Errors.errorGetDataNewsFromServer.rawValue)
+                print(Errors.errorGetData.rawValue)
                 print(error.localizedDescription)
             }
             guard let data = data else {

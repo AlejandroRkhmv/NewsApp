@@ -22,12 +22,12 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         updateViewControllers(navigationControllers: navigationControllers)
     }
     
-    // MARK: - setViewControllers
+    // MARK: - SetViewControllers
     private func setViewControllers() -> [UINavigationController] {
         NavigationControllerCreator.createNavigationControllers()
     }
     
-    // MARK: - updateViewControllers
+    // MARK: - UpdateViewControllers
     private func updateViewControllers(navigationControllers: [UINavigationController]) {
         ViewControllersUpdater.updateViewControllers(for: navigationControllers)
     }

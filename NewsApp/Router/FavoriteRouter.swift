@@ -6,14 +6,12 @@
 //
 
 import UIKit
-import CoreData
 
 final class FavoriteRouter: Router {
-    
     override func openViewController() {
         super.openViewController()
-        guard let navigationController = navigationController,
-              let newsViewController = builder?.createFavoriteNewsViewController(router: self) else { return }
+        guard let navigationController = navigationController else { return }
+        let newsViewController = builder.createFavoriteNewsViewController(router: self)
         navigationController.viewControllers.append(newsViewController)
     }
 }

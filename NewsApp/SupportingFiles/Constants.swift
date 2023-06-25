@@ -12,7 +12,7 @@ final class Constants {
     private let apiKey = "pub_2489848c1bd14d0d2fdda41dd8482c6b6c036"
     
     var urlString: String {
-        let urlStr = "https://newsdata.io/api/1/news?apikey=\(self.apiKey)&q=pizza"
+        let urlStr = "https://newsdata.io/api/1/news?apikey=\(self.apiKey)&q=dogs"
         return urlStr
     }
     

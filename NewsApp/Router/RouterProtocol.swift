@@ -9,11 +9,11 @@ import UIKit
 import CoreData
 
 protocol RouterProtocol {
-    var builder: Builder? { get set }
+    var builder: Builder { get set }
     var navigationController: UINavigationController? { get set }
     
-    init(builder: Builder?, navigationController: UINavigationController?)
+    init(builder: Builder, navigationController: UINavigationController?)
     
     func openViewController()
-    func goToDetailViewController(new: News?, context: NSManagedObjectContext)
+    func goToDetailViewController(news: News, context: NSManagedObjectContext?)
 }

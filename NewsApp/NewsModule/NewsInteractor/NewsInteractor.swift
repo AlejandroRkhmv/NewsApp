@@ -8,7 +8,6 @@
 import Foundation
 
 final class NewsInteractor: NewsInteractorProtocol {
-    
     var networkService: NetworkServiceProtocol?
     var jsonParser: JSONParserProtocol?
     var newsCreator: NewsCreatorProtocol?

@@ -27,15 +27,15 @@ final class NewsAppUITests: XCTestCase {
     
     func testNewsVCSwipe() throws {
         XCTAssertTrue(app.isOnNews)
-        app.tables.firstMatch.swipeUp()
+        app.tables.firstMatch.swipeUp() // это просто свайп скорее всего, он не упадет если свайпа не получится. Там нет проверки внутри
         app.tables.firstMatch.swipeDown()
     }
     
     func testCheckGoFromNewsVCToDetailVC() throws {
-        app.tables.firstMatch.swipeUp()
+        app.tables.firstMatch.swipeUp() // зачем здесь свайпать? Таблица с новостями и так должна быть на экране
         app.tables.element.tap()
         XCTAssertTrue(app.isOnDetail)
-        app.navigationBars["NewsApp.DetailNewsView"].buttons["News"].tap()
+        app.navigationBars["NewsApp.DetailNewsView"].buttons["News"].tap() // если это клик на кнопку назад, то нужно после этого проверить, что ты оказался на экране с таблицей новостей. Иначе смысла нет назад тапать
     }
     
     func testFavoriteNewsVC() throws {
@@ -49,7 +49,7 @@ final class NewsAppUITests: XCTestCase {
         app.tabBars["Tab Bar"].buttons["Favorite News"].tap()
         XCTAssertTrue(app.isOnFavoriteNew)
         app.tables.firstMatch.swipeUp()
-        app.tables.firstMatch.swipeDown()
+        app.tables.firstMatch.swipeDown() // скорее всего свайпы не проверяют. а просто свайпают
     }
     
     func testCheckGoFromFavoriteNewsVCToDetailVC() throws {
@@ -58,16 +58,16 @@ final class NewsAppUITests: XCTestCase {
         XCTAssertTrue(app.isOnFavoriteNew)
         app.tables.element.tap()
         XCTAssertTrue(app.isOnDetail)
-        app.firstMatch.swipeUp()
+        app.firstMatch.swipeUp() // эти свайпы наверное не нужны
         app.firstMatch.swipeDown()
         app.navigationBars["NewsApp.DetailNewsView"].buttons["Favorite News"].tap()
         XCTAssertTrue(app.isOnFavoriteNew)
     }
     
     func testAddAndDeleteNewsButton() {
-        app.tables.element.tap()
+        app.tables.element.tap() // перед этим не надо проверять как везде, что ты на экране новостей?
         XCTAssertTrue(app.isOnDetail)
-        app.navigationBars["NewsApp.DetailNewsView"].buttons["drag"].tap()
+        app.navigationBars["NewsApp.DetailNewsView"].buttons["drag"].tap() // тапнул на меню, но проверки нет никакой
     }
     
     func testLaunchPerformance() throws {

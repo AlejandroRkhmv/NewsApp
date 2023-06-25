@@ -31,10 +31,10 @@ final class Builder: BuilderProtocol {
         return favoriteNewsViewController
     }
     
-    func createDetailNewsViewController(router: RouterProtocol, context: NSManagedObjectContext, new: News?) -> UIViewController {
+    func createDetailNewsViewController(router: RouterProtocol, context: NSManagedObjectContext?, news: News) -> UIViewController {
         let detailNewsViewController = DetailNewsViewController()
         let detailInteractor = DetailInteractor(networkService: networkService, newsCreator: newsCreator, context: context)
-        let detailNewsPresenter = DetailNewsPresenter(detailNewsViewController: detailNewsViewController, detailInteractor: detailInteractor, router: router, new: new)
+        let detailNewsPresenter = DetailNewsPresenter(detailNewsViewController: detailNewsViewController, detailInteractor: detailInteractor, router: router, news: news)
         detailNewsViewController.detailNewsPresenter = detailNewsPresenter
         return detailNewsViewController
     }

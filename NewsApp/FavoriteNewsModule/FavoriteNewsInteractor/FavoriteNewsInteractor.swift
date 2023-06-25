@@ -9,10 +9,10 @@ import Foundation
 import CoreData
 
 final class FavoriteNewsInteractor: FavoriteNewsInteractorProtocol {
-    var newsCreator: NewsCreator?
+    var newsCreator: NewsCreator
     var context: NSManagedObjectContext?
     
-    required init(newsCreator: NewsCreator?) {
+    required init(newsCreator: NewsCreator) {
         self.newsCreator = newsCreator
     }
     
@@ -22,7 +22,7 @@ final class FavoriteNewsInteractor: FavoriteNewsInteractorProtocol {
         guard let newsFromCoreData = try? context.fetch(fetchRequest) else {
             print(Errors.getNews)
             return }
-        guard let favoriteNews = newsCreator?.createFavoriteNews(from: newsFromCoreData) else { return }
+        let favoriteNews = newsCreator.createFavoriteNews(from: newsFromCoreData)
         completionHandler(favoriteNews)
     }
 }

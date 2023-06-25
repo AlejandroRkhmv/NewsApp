@@ -7,17 +7,18 @@
 
 import UIKit
 
+// MARK: - Extension DetailNewsViewController
 extension DetailNewsViewController {
-   
    func setScrollView() {
        scrollView.translatesAutoresizingMaskIntoConstraints = false
        view.addSubview(scrollView)
    
-       scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-       scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-       scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-       scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-       
+       NSLayoutConstraint.activate([
+       scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+       scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+       scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+       scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+       ])
        
        scrollContainer.translatesAutoresizingMaskIntoConstraints = false
        scrollView.addSubview(scrollContainer)
@@ -25,9 +26,10 @@ extension DetailNewsViewController {
        scrollContainer.spacing = 16
        scrollContainer.axis = .vertical
        
-       
-       scrollContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32).isActive = true
-       scrollContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+       NSLayoutConstraint.activate([
+       scrollContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32),
+       scrollContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+       ])
    }
 
    func setTitleLabel() {
@@ -56,8 +58,10 @@ extension DetailNewsViewController {
        imageNews.layer.cornerRadius = 10
        imageNews.clipsToBounds = true
 
-       imageNews.widthAnchor.constraint(equalToConstant: scrollContainer.bounds.size.width * 0.9).isActive = true
-       imageNews.heightAnchor.constraint(equalToConstant: view.bounds.size.height * 0.3).isActive = true
+       NSLayoutConstraint.activate([
+       imageNews.widthAnchor.constraint(equalToConstant: scrollContainer.bounds.size.width * 0.9),
+       imageNews.heightAnchor.constraint(equalToConstant: view.bounds.size.height * 0.3),
+       ])
    }
 
    func setLinkLabel() {
@@ -98,11 +102,15 @@ extension DetailNewsViewController {
     }
 }
 
+// MARK: - Extension DetailNewsViewControllerProtocol
 extension DetailNewsViewController: DetailNewsViewControllerProtocol {
-   func setNeedsData(from new: News?) {
-       guard let new = new else { return }
+    
+    // MARK: - Set Needs Data For DetailNewsViewController
+   func setNeedsData(from new: News) {
        self.titleLabel.text = new.title
-       self.creatorLabel.text = new.creator.reduce("") { $0 + " " + $1 }
+       var creator = new.creator.reduce("") { $0 + " " + $1 }
+       creator.removeFirst()
+       self.creatorLabel.text = creator
        self.linkNewsLabel.attributedText = createLinkAttributedStrring(from: new.link)
        self.contentLabel.text = new.content
        guard let data = new.imageData else {
@@ -113,8 +121,8 @@ extension DetailNewsViewController: DetailNewsViewControllerProtocol {
    }
 }
 
+// MARK: - Extension DetailNewsViewController Menu Button
 extension DetailNewsViewController {
-   
    func setMenuButton() {
        navigationItem.rightBarButtonItem = menuRightBarButtonItems()
        navigationController?.navigationBar.tintColor = .black

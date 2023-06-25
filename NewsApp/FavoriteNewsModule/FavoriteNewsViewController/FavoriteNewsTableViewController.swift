@@ -8,7 +8,6 @@
 import UIKit
 
 final class FavoriteNewsViewController: UIViewController {
-
     var favoriteNewsPresenter: FavoriteNewsPresenterProtocol?
     let tableView = UITableView()
     

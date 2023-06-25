@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Extension NewsViewController
 extension NewsViewController {
     func addTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,13 +24,15 @@ extension NewsViewController {
     func makeActivityIndicator() {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         tableView.addSubview(activityIndicator)
-        activityIndicator.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: self.tableView.centerYAnchor).isActive = true
-        
+        NSLayoutConstraint.activate([
+        activityIndicator.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor),
+        activityIndicator.centerYAnchor.constraint(equalTo: self.tableView.centerYAnchor),
+        ])
         activityIndicator.startAnimating()
     }
 }
 
+// MARK: - Extension UITableViewDelegate, UITableViewDataSource
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,7 +54,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let new = newsPresenter?.news[indexPath.row]
+        guard let new = newsPresenter?.news[indexPath.row] else { return }
         newsPresenter?.goToDetailNewsViewController(with: new)
     }
     
@@ -60,6 +63,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - Extension NewsViewControllerProtocol
 extension NewsViewController: NewsViewControllerProtocol {
     func reloadData() {
         self.tableView.reloadData()
@@ -67,6 +71,7 @@ extension NewsViewController: NewsViewControllerProtocol {
     }
 }
 
+// MARK: - Extension NewTableViewCellDelegate
 extension NewsViewController: NewTableViewCellDelegate {
     func loadImage(from urlString: String, completionHandler: @escaping ((Data) -> Void)) {
         newsPresenter?.loadImageData(from: urlString, completionHandler: completionHandler)

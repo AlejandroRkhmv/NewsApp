@@ -8,5 +8,5 @@
 import Foundation
 
 protocol DetailNewsViewControllerProtocol: AnyObject {
-    func setNeedsData(from new: News?)
+    func setNeedsData(from new: News)
 }

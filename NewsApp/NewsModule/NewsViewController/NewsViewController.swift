@@ -8,10 +8,8 @@
 import UIKit
 
 final class NewsViewController: UIViewController {
-    
     var newsPresenter: NewsPresenterProtocol?
     let tableView = UITableView()
-    
     var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.hidesWhenStopped = true

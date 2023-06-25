@@ -472,8 +472,8 @@
 		21D2DAAB2A477C4C007EFA6E /* DetailNewsPresenter */ = {
 			isa = PBXGroup;
 			children = (
-				21A970D82A4576CB0053DCF4 /* DetailNewsPresenter.swift */,
 				21D2DAA82A477C09007EFA6E /* DetailNewsPresenterProtocol.swift */,
+				21A970D82A4576CB0053DCF4 /* DetailNewsPresenter.swift */,
 			);
 			path = DetailNewsPresenter;
 			sourceTree = "<group>";

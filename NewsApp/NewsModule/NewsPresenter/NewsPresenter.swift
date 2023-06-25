@@ -10,12 +10,12 @@ import CoreData
 
 final class NewsPresenter: NewsPresenterProtocol {
     weak var newsViewController: NewsViewControllerProtocol?
-    var newsInteractor: NewsInteractorProtocol?
-    var newsRouter: RouterProtocol?
-    var context: NSManagedObjectContext!
+    var newsInteractor: NewsInteractorProtocol
+    var newsRouter: RouterProtocol
+    var context: NSManagedObjectContext?
     var news = [News]()
     
-    required init(newsViewController: NewsViewControllerProtocol?, newsInteractor: NewsInteractorProtocol?, newsRouter: RouterProtocol?, context: NSManagedObjectContext!) {
+    required init(newsViewController: NewsViewControllerProtocol?, newsInteractor: NewsInteractorProtocol, newsRouter: RouterProtocol, context: NSManagedObjectContext?) {
         self.newsViewController = newsViewController
         self.newsInteractor = newsInteractor
         self.newsRouter = newsRouter
@@ -23,7 +23,7 @@ final class NewsPresenter: NewsPresenterProtocol {
     }
     
     func getNewsForTable() {
-        newsInteractor?.needNewsForTable(completionHandler: { [weak self] news in
+        newsInteractor.needNewsForTable(completionHandler: { [weak self] news in
             guard let self = self else { return }
             self.news = news
             DispatchQueue.main.async {
@@ -33,10 +33,10 @@ final class NewsPresenter: NewsPresenterProtocol {
     }
     
     func loadImageData(from urlString: String, completionHandler: @escaping ((Data) -> Void)) {
-        newsInteractor?.loadImageData(from: urlString, completionHandler: completionHandler)
+        newsInteractor.loadImageData(from: urlString, completionHandler: completionHandler)
     }
     
-    func goToDetailNewsViewController(with new: News?) {
-        newsRouter?.goToDetailViewController(new: new, context: self.context)
+    func goToDetailNewsViewController(with news: News) {
+        newsRouter.goToDetailViewController(news: news, context: self.context)
     }
 }

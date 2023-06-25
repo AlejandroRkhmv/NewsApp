@@ -59,12 +59,6 @@ final class CommonTableViewCell: UITableViewCell {
                         }
                     }
                 }
-            } else {
-                DispatchQueue.main.async {
-                    self.imageNew.image = UIImage(named: "noImage")
-                    self.imageNew.backgroundColor = self.contentView.backgroundColor
-                    self.activityIndicator.stopAnimating()
-                }
             }
         }
     }
@@ -78,6 +72,7 @@ final class CommonTableViewCell: UITableViewCell {
         makeActivityIndicator()
     }
     
+    // MARK: - Fill Cell
     func fillCell(from new: News) {
         var creatorLabel = new.creator.reduce("") { $0 + " " + $1}
         creatorLabel.removeFirst()

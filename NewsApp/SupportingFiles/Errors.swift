@@ -8,7 +8,7 @@
 import Foundation
 
 enum Errors: String, Error {
-    case errorGetDataNewsFromServer
+    case errorGetData = "Error get data news from server"
     case nilData = "Data == nil"
     case decodeData = "Can not decode data"
     case entity = "Error create entity for saving favorite new"
