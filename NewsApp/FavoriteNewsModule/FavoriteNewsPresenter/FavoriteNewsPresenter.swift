@@ -24,7 +24,8 @@ final class FavoriteNewsPresenter: FavoriteNewsPresenterProtocol {
     
     func needsFavoriteNews() {
         favoriteNewsInteractor.context = self.context
-        favoriteNewsInteractor.getFavoriteNewsFromCoreData(completionHandler: { news in
+        favoriteNewsInteractor.getFavoriteNewsFromCoreData(completionHandler: { [weak self] news in
+            guard let self = self else { return }
             guard let currentCount = self.favoriteNews?.count else {
                 self.favoriteNews = news
                 DispatchQueue.main.async {
