@@ -21,6 +21,7 @@ final class DetailNewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.accessibilityIdentifier = "Detail"
         setMenuButton()
         detailNewsPresenter?.setNeedData()
         setScrollView()

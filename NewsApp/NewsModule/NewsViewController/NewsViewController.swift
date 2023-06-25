@@ -20,7 +20,7 @@ final class NewsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.accessibilityIdentifier = "News"
         let news = UITabBarItem(title: "News", image: UIImage(systemName: "newspaper"), selectedImage: nil)
         self.tabBarItem = news
         navigationItem.title = "News"

@@ -9,6 +9,10 @@ import Foundation
 import CoreData
 
 protocol FavoriteNewsInteractorProtocol {
+    var newsCreator: NewsCreator? { get set }
     var context: NSManagedObjectContext? { get set }
+    
+    init(newsCreator: NewsCreator?)
+    
     func getFavoriteNewsFromCoreData(completionHandler: @escaping (([News]) -> Void))
 }

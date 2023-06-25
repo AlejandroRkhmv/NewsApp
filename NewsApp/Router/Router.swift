@@ -17,11 +17,11 @@ class Router: RouterProtocol {
         self.navigationController = navigationController
     }
     
-    func openViewController() {
-        
-    }
+    func openViewController() {}
     
     func goToDetailViewController(new: News?, context: NSManagedObjectContext) {
-        
+        guard let navigationController = navigationController,
+                let detailNewsViewController = builder?.createDetailNewsViewController(router: self, context: context, new: new) else { return }
+        navigationController.pushViewController(detailNewsViewController, animated: false)
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 final class NewsCreator: NewsCreatorProtocol {
+    
     func createNewsForTable(from newsAPI: NewsModelAPI) -> [News] {
         var newsForTable = [News]()
         for newFromAPI in newsAPI.results {
@@ -23,7 +24,18 @@ final class NewsCreator: NewsCreatorProtocol {
         favoriteNews.content = news.content
         favoriteNews.imageData = news.imageData
         favoriteNews.link = news.link
-        favoriteNews.creator = news.creator.reduce("") { $0 + " " + $1 }
+        var creator = news.creator.reduce("") { $0 + " " + $1 }
+        creator.removeFirst()
+        favoriteNews.creator = creator
         favoriteNews.date = news.date
+    }
+    
+    func createFavoriteNews(from newsFromCoreData: [FavoriteNew]) -> [News] {
+        var favoriteNews = [News]()
+        for news in newsFromCoreData.reversed() {
+            guard let favoriteNew = News(news: news) else { return [] }
+            favoriteNews.append(favoriteNew)
+        }
+        return favoriteNews
     }
 }

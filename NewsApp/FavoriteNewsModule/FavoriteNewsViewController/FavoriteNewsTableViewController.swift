@@ -14,8 +14,8 @@ final class FavoriteNewsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let favoriteNews = UITabBarItem(title: "Favorite", image: UIImage(systemName: "star.square.on.square"), selectedImage: nil)
+        view.accessibilityIdentifier = "FavoriteNews"
+        let favoriteNews = UITabBarItem(title: "Favorite News", image: UIImage(systemName: "star.square.on.square"), selectedImage: nil)
         self.tabBarItem = favoriteNews
         navigationItem.title = "Favorite News"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Courier new", size: 20)!]

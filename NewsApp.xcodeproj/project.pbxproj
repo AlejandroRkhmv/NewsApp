@@ -434,8 +434,8 @@
 		21D2DA982A4779E2007EFA6E /* FavoriteNewsInteractor */ = {
 			isa = PBXGroup;
 			children = (
-				21A970D32A45677E0053DCF4 /* FavoriteNewsInteractor.swift */,
 				21D2DA992A477A0D007EFA6E /* FavoriteNewsInteractorProtocol.swift */,
+				21A970D32A45677E0053DCF4 /* FavoriteNewsInteractor.swift */,
 			);
 			path = FavoriteNewsInteractor;
 			sourceTree = "<group>";

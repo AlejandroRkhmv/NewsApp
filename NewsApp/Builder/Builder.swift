@@ -25,7 +25,7 @@ final class Builder: BuilderProtocol {
     
     func createFavoriteNewsViewController(router: RouterProtocol) -> UIViewController {
         let favoriteNewsViewController = FavoriteNewsViewController()
-        let favoriteNewsInteractor = FavoriteNewsInteractor()
+        let favoriteNewsInteractor = FavoriteNewsInteractor(newsCreator: newsCreator)
         let favoriteNewsPresenter = FavoriteNewsPresenter(favoriteNewsViewVontroller: favoriteNewsViewController, favoriteNewsInteractor: favoriteNewsInteractor, router: router, context: self.context)
         favoriteNewsViewController.favoriteNewsPresenter = favoriteNewsPresenter
         return favoriteNewsViewController
